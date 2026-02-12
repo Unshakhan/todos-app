@@ -6,7 +6,8 @@
 }
 
 body {
-	background: #f6f5f7;
+	/* background: #f6f5f7; */
+	background: url("https://thumbs.dreamstime.com/b/warm-autumn-fall-leaves-background-seasonal-nature-inspired-aesthetic-rich-autumn-themed-background-vibrant-golden-red-368893588.jpg") no-repeat center/cover;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -161,9 +162,11 @@ input {
 
 .overlay {
 	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
-	background-repeat: no-repeat;
+	/* background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C); */
+	background-color: #BD2031;
+background-color: #FFD300;
+background-image: linear-gradient(315deg, #FFD300 0%, #ff3800 74%);
 	background-size: cover;
 	background-position: 0 0;
 	color: #FFFFFF;
@@ -250,3 +253,4 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+/* body styling  */
