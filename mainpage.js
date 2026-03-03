@@ -169,11 +169,18 @@ logoutBtn.addEventListener("click", async () => {
     if (error) {
         console.log(error);
         alert("Logout failed");
-    } else {
-        alert("Logged out successfully");
-        window.location.href = "index.html"; // login page
-    }
+    }else {
+    Swal.fire({
+        title: "Logged Out 👋",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false
+    });
 
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 2000);
+}
 });
 
 

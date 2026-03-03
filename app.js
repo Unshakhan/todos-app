@@ -4,11 +4,11 @@ const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
 signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
+  container.classList.add("right-panel-active");
 });
 
 signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
+  container.classList.remove("right-panel-active");
 });
 
 
@@ -45,7 +45,7 @@ async function register() {
     // window.location.href="/dashboard.html"
   }
 }
-async function login() {
+async function login(event) {
   event.preventDefault();
   var loginEmail = document.getElementById("loginEmail").value;
   var loginPass = document.getElementById("loginPass").value;
@@ -60,11 +60,36 @@ async function login() {
   if (error) {
     console.log(error);
     alert(error.message);
-  } else {
-    alert("Login Successful");
-  }
-  window.location.href = "/mainpage.html";
+    return
+  }else {
+ alert("Login Successful 🎉")
+    window.location.href = "/mainpage.html";
+}
 }
 window.register = register;
 window.login = login;
 // window.logout = logout;
+
+// Theme Cycling Logic
+const lampFixture = document.querySelector('.lamp-fixture');
+const themes = ['theme-orange', 'theme-blue', 'theme-purple', 'theme-green'];
+let currentThemeIndex = -1;
+
+if (lampFixture) {
+  lampFixture.addEventListener('click', () => {
+    // Remove current theme
+    if (currentThemeIndex !== -1) {
+      document.body.classList.remove(themes[currentThemeIndex]);
+    }
+
+    // Cycle to next theme
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    document.body.classList.add(themes[currentThemeIndex]);
+
+    // Premium Bounce Animation
+    lampFixture.style.transform = 'translateY(10px) scale(0.95)';
+    setTimeout(() => {
+      lampFixture.style.transform = '';
+    }, 300);
+  });
+}

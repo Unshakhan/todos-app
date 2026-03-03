@@ -1,80 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo_App</title>
-	   <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Todo_App</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+		integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="style.css">
+	<style>
+		.bubble-bg {
+			position: fixed;
+			inset: 0;
+			overflow: hidden;
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		.bubble {
+			position: absolute;
+			bottom: -140px;
+			border-radius: 50%;
+			background-image:
+				radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.25) 34%, rgba(255, 255, 255, 0) 58%),
+				linear-gradient(315deg, var(--bubble-grad-start, #FFD300) 0%, var(--bubble-grad-end, #ff3800) 74%);
+			animation: bubble-rise var(--dur, 12s) linear infinite;
+			animation-delay: var(--delay, 0s);
+			width: var(--size, 48px);
+			height: var(--size, 48px);
+			opacity: 0;
+			filter: blur(0.3px);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), inset -10px -10px 18px rgba(255, 255, 255, 0.18);
+		}
+
+		@keyframes bubble-rise {
+			0% {
+				transform: translateY(0) scale(0.35);
+				opacity: 0;
+			}
+
+			15% {
+				opacity: 0.45;
+			}
+
+			85% {
+				opacity: 0.32;
+			}
+
+			100% {
+				transform: translateY(-120vh) scale(1.08);
+				opacity: 0;
+			}
+		}
+
+		body.theme-orange {
+			--bubble-grad-start: #eeff00;
+			--bubble-grad-end: #ee4449;
+		}
+
+		body.theme-blue {
+			--bubble-grad-start: #eeff00;
+			--bubble-grad-end: #0072ff;
+		}
+
+		body.theme-purple {
+			--bubble-grad-start: #eeff00;
+			--bubble-grad-end: #6a11cb;
+		}
+
+		body.theme-green {
+			--bubble-grad-start: #eeff00;
+			--bubble-grad-end: #055837;
+		}
+
+		body:not(.theme-orange):not(.theme-blue):not(.theme-purple):not(.theme-green) {
+			--bubble-grad-start: #FFD300;
+			--bubble-grad-end: #ff3800;
+		}
+
+		.container,
+		.lamp-container {
+			z-index: 2;
+		}
+	</style>
 </head>
+
 <body>
-
-
-<div class="container signup" id="container">
-	<div class="form-container sign-up-container">
-		<form onsubmit="register()">
-			<h1>Create Account</h1>
-			<input type="text" id="name" name="name" placeholder="Name" required = "" />
-			<input type="email" name="email" id="email" placeholder="Email" required = "" />
-			 <input
-            type="number"
-            name="phone"
-            id="phone"
-            placeholder="Phone"
-            required=""
-          />
-			<input type="password" name="pswrd" id="pswrd" placeholder="Password" required = "" />
-			<input type="password" name="pswrd" id="cpswrd" placeholder="Confirm Password" required = "" />
-			<button type="submit">Sign Up</button>
-		</form>
+	<div class="bubble-bg" aria-hidden="true">
+		<span class="bubble" style="left: 4%; --size: 44px; --dur: 13s; --delay: -5s;"></span>
+		<span class="bubble" style="left: 11%; --size: 66px; --dur: 16s; --delay: -10s;"></span>
+		<span class="bubble" style="left: 19%; --size: 38px; --dur: 12s; --delay: -2s;"></span>
+		<span class="bubble" style="left: 27%; --size: 82px; --dur: 19s; --delay: -14s;"></span>
+		<span class="bubble" style="left: 35%; --size: 50px; --dur: 14s; --delay: -9s;"></span>
+		<span class="bubble" style="left: 43%; --size: 72px; --dur: 18s; --delay: -3s;"></span>
+		<span class="bubble" style="left: 52%; --size: 42px; --dur: 13s; --delay: -11s;"></span>
+		<span class="bubble" style="left: 61%; --size: 58px; --dur: 15s; --delay: -6s;"></span>
+		<span class="bubble" style="left: 70%; --size: 90px; --dur: 21s; --delay: -12s;"></span>
+		<span class="bubble" style="left: 79%; --size: 46px; --dur: 14s; --delay: -4s;"></span>
+		<span class="bubble" style="left: 87%; --size: 64px; --dur: 17s; --delay: -8s;"></span>
+		<span class="bubble" style="left: 94%; --size: 36px; --dur: 11s; --delay: -1s;"></span>
 	</div>
-	<div class="form-container sign-in-container login">
-		<form onsubmit="login()">
-			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fa-brands fa-google"></i></a>
-				<a href="#" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" id="loginEmail" placeholder="Email" />
-			<input type="password" id="loginPass" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+	<div class="lamp-container" id="lamp">
+		<div class="lamp-wire"></div>
+		<div class="lamp-fixture">
+			<div class="lamp-cap"></div>
+			<div class="lamp-bulb">
+				<div class="lamp-inner-light"></div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<footer>
-	<p>
-		Created with <i class="fa fa-heart"></i> by
-		<a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-		- Read how I created this and how you can join the challenge
-		<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-	</p>
-</footer>
- <!-- Supabase CDN -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
-<!-- Sweet  Alert  -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!--script file -->
-<script type="module" src="app.js"></script>
+
+	<div class="container signup" id="container">
+		<div class="form-container sign-up-container">
+			<form onsubmit="register()">
+				<h1>Create Account</h1>
+				<input type="text" id="name" name="name" placeholder="Name" required="" />
+				<input type="email" name="email" id="email" placeholder="Email" required="" />
+				<input type="number" name="phone" id="phone" placeholder="Phone" required="" />
+				<input type="password" name="pswrd" id="pswrd" placeholder="Password" required="" />
+				<input type="password" name="pswrd" id="cpswrd" placeholder="Confirm Password" required="" />
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container login">
+			<form onsubmit="login(event)">
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fa-brands fa-google"></i></a>
+					<a href="#" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span>
+				<input type="email" id="loginEmail" placeholder="Email" />
+				<input type="password" id="loginPass" placeholder="Password" />
+				<a href="#">Forgot your password?</a>
+				<button>Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Supabase CDN -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+	<!-- Sweet  Alert  -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!--script file -->
+	<script type="module" src="app.js"></script>
 </body>
+
 </html>
